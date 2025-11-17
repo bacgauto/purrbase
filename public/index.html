@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tạp Chí Công Nghệ Đẹp - AI</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <div class="magazine">
+        <!-- Header -->
+        <header class="header">
+            <h1 class="logo">🌸 Tạp Chí Công Nghệ Đẹp</h1>
+            <p class="tagline">Bài Viết Được Tạo Bởi AI Về Công Nghệ Đẹp</p>
+            <button id="saved-btn" class="saved-button">📌 Đã Lưu (<span id="saved-count">0</span>)</button>
+        </header>
+
+        <!-- Search Section with Preferences -->
+        <section class="search-section">
+            <div class="search-box">
+                <input type="text" id="search-input" placeholder="Sản phẩm công nghệ nào bạn muốn khám phá? (ví dụ: 'Sony WH-1000XM5')">
+                <button id="generate-btn">✨ Tạo Bài Viết</button>
+            </div>
+            
+            <!-- AI Preference Selector -->
+            <div class="preference-section">
+                <h3>🎯 Bạn quan tâm đến điều gì?</h3>
+                <div id="preference-tags" class="preference-tags">
+                    <button class="pref-tag active" data-pref="all">Tất cả</button>
+                    <button class="pref-tag" data-pref="review">Đánh giá</button>
+                    <button class="pref-tag" data-pref="beauty">Vẻ đẹp</button>
+                    <button class="pref-tag" data-pref="camera">Camera</button>
+                    <button class="pref-tag" data-pref="design">Thiết kế</button>
+                    <button class="pref-tag" data-pref="unboxing">Mở hộp</button>
+                    <button class="pref-tag" data-pref="comparison">So sánh</button>
+                </div>
+                <p class="help-text">AI sẽ tự động đề xuất thêm từ khóa dựa trên sản phẩm của bạn</p>
+            </div>
+
+            <!-- Bot Status -->
+            <div class="bot-status">
+                <p>🐍 <strong>Python YouTube Bot:</strong> Tự động lấy bình luận thật từ YouTube</p>
+                <p class="help-text">Bot Python sẽ tự động download bình luận trực tiếp từ YouTube. Nhanh & đáng tin cậy!</p>
+            </div>
+        </section>
+
+        <!-- Loading State -->
+        <div id="loading" class="loading hidden">
+            <div class="spinner"></div>
+            <p>🎬 Đang tìm 10 video YouTube đẹp nhất...</p>
+            <p class="loading-sub">📊 Đang phân tích bình luận và cảm xúc...</p>
+        </div>
+
+        <!-- Video Gallery Navigation -->
+        <div id="video-gallery-nav" class="video-gallery-nav hidden">
+            <h2>📹 Gallery Video (10 videos)</h2>
+            <div class="gallery-grid" id="gallery-grid"></div>
+        </div>
+
+        <!-- Article Display -->
+        <article id="article" class="article hidden">
+            <div class="article-header">
+                <h2 class="article-title" id="title"></h2>
+                <p class="article-subtitle" id="subtitle"></p>
+                <button id="pin-btn" class="pin-button">📌 Lưu Bài Viết</button>
+            </div>
+
+            <!-- Video Embed -->
+            <div id="video-container" class="video-container"></div>
+
+            <!-- Gallery Navigation -->
+            <div class="video-nav-buttons">
+                <button id="prev-video" class="nav-btn">← Video Trước</button>
+                <span id="video-counter">1 / 10</span>
+                <button id="next-video" class="nav-btn">Video Sau →</button>
+            </div>
+
+            <div class="article-body">
+                <div class="hero-text" id="beauty-description"></div>
+
+                <!-- Sentiment Analysis -->
+                <div class="sentiment-section">
+                    <h3>📊 Mọi Người Nghĩ Gì</h3>
+                    <div id="sentiment-summary" class="sentiment-summary"></div>
+                    <div id="sentiment-bars" class="sentiment-bars"></div>
+                </div>
+
+                <!-- User Comments -->
+                <div class="comments-section">
+                    <h3>💬 Bình Luận Người Dùng</h3>
+                    <div id="comments-list" class="comments-list"></div>
+                </div>
+            </div>
+        </article>
+
+        <!-- Saved Articles Modal -->
+        <div id="saved-modal" class="modal hidden">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>📌 Bài Viết Đã Lưu</h2>
+                    <button id="close-modal" class="close-btn">×</button>
+                </div>
+                <div id="saved-list" class="saved-list"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MỸ MÈO - Tech Magazine</title>
+    <link rel="stylesheet" href="/magazine.css">
+    <script>
+        // Suppress YouTube iframe errors (ad blocker, debug undefined, etc.)
+        window.addEventListener('error', function(e) {
+            if (e.message && (
+                e.message.includes('debug is not defined') ||
+                e.message.includes('doubleclick') ||
+                e.message.includes('googleads')
+            )) {
+                e.preventDefault();
+                return true;
+            }
+        }, true);
+        
+        window.addEventListener('unhandledrejection', function(e) {
+            if (e.reason && e.reason.message && (
+                e.reason.message.includes('debug is not defined') ||
+                e.reason.message.includes('doubleclick') ||
+                e.reason.message.includes('googleads')
+            )) {
+                e.preventDefault();
+                return true;
+            }
+        });
+    </script>
+</head>
+<body>
+    <!-- Magazine Header -->
+    <header class="mag-header">
+        <div class="container">
+            <div class="mag-logo">
+                <img src="/logo2.png" alt="MỸ MÈO">
+            </div>
+            <nav class="mag-nav">
+                <button class="nav-item active" data-category="all">Tất cả</button>
+                <button class="nav-item" data-category="dep">Đẹp</button>
+                <button class="nav-item" data-category="manh">Mạnh</button>
+                <button class="nav-item" data-category="re">Rẻ</button>
+            </nav>
+            <select id="language-selector" class="language-selector">
+                <option value="vi">🇻🇳 Tiếng Việt</option>
+                <option value="en">🇬🇧 English</option>
+                <option value="zh-CN">🇨🇳 中文</option>
+                <option value="ja">🇯🇵 日本語</option>
+                <option value="ko">🇰🇷 한국어</option>
+                <option value="es">🇪🇸 Español</option>
+                <option value="fr">🇫🇷 Français</option>
+                <option value="de">🇩🇪 Deutsch</option>
+                <option value="pt">🇵🇹 Português</option>
+                <option value="ru">🇷🇺 Русский</option>
+            </select>
+            <button class="create-btn" id="create-article-btn">+ Tạo Bài Viết</button>
+        </div>
+    </header>
+    
+    <!-- Welcome Message (Full Width Below Header) -->
+    <div class="welcome-section">
+        <div class="container">
+            <div class="welcome-message" id="welcome-message">
+                <h1>Welcome to MỸ MÈO Tech Magazine</h1>
+                <p>AI-Powered Product Reviews from Real YouTube Comments</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Magazine Grid -->
+    <main class="mag-grid container" id="magazine-grid">
+        <!-- Articles will be inserted here -->
+        <div class="empty-state">
+            <p>Chưa có bài viết nào</p>
+            <button class="create-btn-large" onclick="document.getElementById('create-article-btn').click()">
+                + Tạo Bài Viết Đầu Tiên
+            </button>
+        </div>
+    </main>
+
+    <!-- Create Article Modal -->
+    <div class="modal hidden" id="create-modal">
+        <div class="modal-backdrop" onclick="closeCreateModal()"></div>
+        <div class="modal-panel">
+            <div class="modal-panel-header">
+                <h2 id="modal-title">Tạo Bài Viết Mới</h2>
+                <button class="close-btn" onclick="closeCreateModal()">×</button>
+            </div>
+            
+            <div class="modal-panel-body">
+                <div class="form-group">
+                    <label id="product-label">Tên sản phẩm</label>
+                    <input type="text" id="product-input" placeholder="VD: Sony Xperia V">
+                </div>
+
+                <div class="form-group">
+                    <label id="category-label">Danh mục</label>
+                    <div class="category-pills">
+                        <button class="pill active" data-cat="dep">Đẹp</button>
+                        <button class="pill" data-cat="manh">Mạnh</button>
+                        <button class="pill" data-cat="re">Rẻ</button>
+                    </div>
+                </div>
+
+                <button class="generate-btn" id="generate-btn">Tạo Bài Viết</button>
+                
+                <div class="loading-state hidden" id="loading-state">
+                    <div class="spinner"></div>
+                    <p id="loading-text">Đang tạo bài viết...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Article Detail Modal -->
+    <div class="modal hidden" id="article-modal">
+        <div class="modal-backdrop" onclick="closeArticleModal()"></div>
+        <div class="modal-panel article-panel">
+            <button class="close-btn-float" onclick="closeArticleModal()">×</button>
+            
+            <div class="article-content" id="article-content">
+                <!-- Article will be inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Background Fetch Indicator -->
+    <div class="fetch-indicator hidden" id="fetch-indicator">
+        <div class="spinner-small"></div>
+        <span id="fetch-text">Đang tải bình luận...</span>
+    </div>
+
+    <script src="/magazine.js"></script>
+</body>
+</html>
