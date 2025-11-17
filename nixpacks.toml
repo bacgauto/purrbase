@@ -1,15 +1,8 @@
-[providers]
-node = "18"
-python = "3.10"
-
 [phases.setup]
 nixPkgs = ["nodejs-18_x", "python310"]
 
 [phases.install]
-cmds = ["npm ci", "pip install -r requirements.txt"]
-
-[phases.build]
-cmds = []
+cmds = ["npm install", "pip install -r requirements.txt"]
 
 [start]
 cmd = "node server.js"
