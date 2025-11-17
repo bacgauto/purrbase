@@ -16,7 +16,7 @@ class YouTubeBot {
             const outputFile = path.join(__dirname, `comments_${videoId}.json`);
             
             // Use Python module directly with output file
-            const command = `python -m youtube_comment_downloader --youtubeid ${videoId} --output "${outputFile}" --limit ${limit} --sort 0`;
+            const command = `python3 -m youtube_comment_downloader --youtubeid ${videoId} --output "${outputFile}" --limit ${limit} --sort 0`;
             
             console.log(`⚙️  Running Python tool...`);
             
