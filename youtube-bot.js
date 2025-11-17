@@ -15,8 +15,9 @@ class YouTubeBot {
             const path = require('path');
             const outputFile = path.join(__dirname, `comments_${videoId}.json`);
             
-            // Use Python module directly with output file
-            const command = `python3 -m youtube_comment_downloader --youtubeid ${videoId} --output "${outputFile}" --limit ${limit} --sort 0`;
+            // Use Python module directly with output file (try python3.11 first, fallback to python3)
+            const pythonCmd = process.env.PYTHON_CMD || 'python3.11';
+            const command = `${pythonCmd} -m youtube_comment_downloader --youtubeid ${videoId} --output "${outputFile}" --limit ${limit} --sort 0`;
             
             console.log(`⚙️  Running Python tool...`);
             
